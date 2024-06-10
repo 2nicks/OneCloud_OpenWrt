@@ -170,7 +170,7 @@ jobs:
           chmod -R 777 $GITHUB_WORKSPACE/$OWRT_FILES/etc/aria2
           chmod -R 777 $GITHUB_WORKSPACE/$OWRT_FILES/mnt/sda1/aria2
           chmod -R 777 $GITHUB_WORKSPACE/$OWRT_FILES/mnt/sda1/aria2/download
-          #chmod -R 755 $GITHUB_WORKSPACE/$OWRT_FILES/mnt/sda1
+          chmod -R 755 $GITHUB_WORKSPACE/$OWRT_FILES/mnt/sda1
           
           rm -rf ./tmp* ./.config*
           [ -e $GITHUB_WORKSPACE/$OWRT_CFG ] && mv $GITHUB_WORKSPACE/$OWRT_CFG .config
