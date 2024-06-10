@@ -27,7 +27,7 @@ env:
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
-  OWRT_IP: 192.168.1.110
+  OWRT_IP: 192.168.1.6
   OWRT_NAME: OneCloud
   OWRT_FILES: onecloud/files
   TZ: Asia/Shanghai
@@ -150,7 +150,7 @@ jobs:
     - name:  加载自定义配置
       working-directory: ./openwrt
       run: |          
-          curl -L -o package/base-files/files/etc/banner https://raw.githubusercontent.com/rmoyulong/AX6-Actions_Lede/master/ax6/cats_banner
+          #curl -L -o package/base-files/files/etc/banner https://raw.githubusercontent.com/rmoyulong/AX6-Actions_Lede/master/ax6/cats_banner
           $GITHUB_WORKSPACE/$DIY_P2_SH
          
           #删除冲突的插件 
@@ -170,7 +170,7 @@ jobs:
           chmod -R 777 $GITHUB_WORKSPACE/$OWRT_FILES/etc/aria2
           chmod -R 777 $GITHUB_WORKSPACE/$OWRT_FILES/mnt/sda1/aria2
           chmod -R 777 $GITHUB_WORKSPACE/$OWRT_FILES/mnt/sda1/aria2/download
-          chmod -R 755 $GITHUB_WORKSPACE/$OWRT_FILES/mnt/sda1/share
+          chmod -R 755 $GITHUB_WORKSPACE/$OWRT_FILES/mnt/sda1
           
           rm -rf ./tmp* ./.config*
           [ -e $GITHUB_WORKSPACE/$OWRT_CFG ] && mv $GITHUB_WORKSPACE/$OWRT_CFG .config
@@ -199,13 +199,6 @@ jobs:
           #openclash 32
           $GITHUB_WORKSPACE/sh/openclash32.sh
         
-    #- name: 设置firewall4的turboacc
-      #run: |
-        #cd openwrt          
-        #turboacc
-        #git clone https://github.com/chenmozhijin/turboacc package/luci-app-turboacc
-        #curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
-        #make defconfig         
         
     - name: 下载编译环境
       working-directory: ./openwrt
@@ -260,11 +253,9 @@ jobs:
         tag_name: OpenWrt_${{ env.OWRT_SOURCE }}_${{ env.OWRT_DATE }}
         files: ${{ env.FIRMWARE }}/*
         body: |
-          自用玩客云一站式直刷固件[amlogic6.6]！使用双USB公头线刷机！
           =============基本信息============
 
           源码：${{env.OWRT_SOURCE}}
-          密码：password
           地址：${{env.OWRT_IP}}
 
     - name: 清理Releases
