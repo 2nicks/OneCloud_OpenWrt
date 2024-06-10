@@ -10,10 +10,10 @@ config samba
 
 config sambashare
 	option name 'tools'
-	option path '/mnt/sda1/share'
+	option path '/mnt/sda1'
 	option guest_ok 'yes'
 	option guest_only 'yes'
 	option read_only 'no'
-	option create_mask '0666'
+	option create_mask '0777'
 	option dir_mask '0777'
 
