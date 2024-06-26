@@ -150,11 +150,9 @@ jobs:
     - name:  加载自定义配置
       working-directory: ./openwrt
       run: |          
-          curl -L -o package/base-files/files/etc/banner https://raw.githubusercontent.com/rmoyulong/AX6-Actions_Lede/master/ax6/cats_banner
           $GITHUB_WORKSPACE/$DIY_P2_SH
          
           #删除冲突的插件 
-          #rm -rf feeds/kenzok8/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
           $GITHUB_WORKSPACE/sh/remove.sh
                
     - name: 自定义IMAGS格式 - meson8b cortex-a5+vfpv4
@@ -198,14 +196,6 @@ jobs:
           
           #openclash 32
           $GITHUB_WORKSPACE/sh/openclash32.sh
-        
-    #- name: 设置firewall4的turboacc
-      #run: |
-        #cd openwrt          
-        #turboacc
-        #git clone https://github.com/chenmozhijin/turboacc package/luci-app-turboacc
-        #curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
-        #make defconfig         
         
     - name: 下载编译环境
       working-directory: ./openwrt
