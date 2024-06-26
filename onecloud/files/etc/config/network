@@ -9,7 +9,7 @@ config globals 'globals'
 
 config interface 'lan'
 	option proto 'static'
-	option ipaddr '192.168.1.110'
+	option ipaddr '192.168.1.2'
 	option netmask '255.255.255.0'
 	option ip6assign '60'
 	option device 'br-lan'
